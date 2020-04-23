@@ -2,23 +2,24 @@
   Created by IntelliJ IDEA.
   User: kajuga
   Date: 22.04.20
-  Time: 17:33
+  Time: 19:46
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hello World - Input Form</title>
+    <title>HelloWorld Sppring paage</title>
 </head>
-<body>
+<>
 
-<form action="processFormVersionThree" method="get">
+<br><br>
+<h2>
+    HE EE LLO!
+    Student name: ${param.studentName}
+</h2>
 
-    <input type="text" name="studentName"
-           placeholder="What's your name?"/>
-    <input type="submit">
-</form>
-
+<br><br>
+The message: ${message}
 
 </body>
 </html>
