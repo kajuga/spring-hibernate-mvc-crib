@@ -1,5 +1,6 @@
 package com.fedorov;
 
+import com.fedorov.validation.CourseCode;
 import javax.validation.constraints.*;
 
 public class Customer {
@@ -14,11 +15,10 @@ public class Customer {
     @Max(value = 10, message = "must be greater than or equal to 10")
     private Integer  freePasses;
 
-
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 chars/digits")
     private String postalCode;
 
-    @CourseCode(value="TOPS", message="must start with TOPS")
+    @CourseCode
     private String courseCode;
 
     public String getCourseCode() {
@@ -28,6 +28,8 @@ public class Customer {
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -53,6 +55,7 @@ public class Customer {
     public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
     }
+
 
     public String getPostalCode() {
         return postalCode;
