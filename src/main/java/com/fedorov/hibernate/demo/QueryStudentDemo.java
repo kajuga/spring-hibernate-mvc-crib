@@ -28,16 +28,29 @@ public class QueryStudentDemo {
             session.beginTransaction();
 
             //query students
-            List<Student> theStudents = session.createQuery("FROM Student").getResultList();
-
-
-//                    Query q = em.createNativeQuery("SELECT a.firstname, a.lastname FROM Author a");
-//            List<Object[]> authors = q.getResultList();
+            List<Student> theStudents = session.createQuery("from Student").getResultList();
 
 //            display the students
-            for (Student tempStudent : theStudents) {
-                System.out.println(tempStudent);
-            }
+            displayStudents(theStudents);
+            System.out.println("\n");
+
+
+            //query students: firstName = 'Aleksandr'
+            theStudents = session.createQuery("from Student s where s.firstName = 'Aleksandr'").getResultList();
+            displayStudents(theStudents);
+            System.out.println("\n");
+
+
+            //query students: lastName='Fedorov' or firstName='Olga'
+            theStudents=session.createQuery("from Student s where s.lastName='Fedorov' OR s.firstName='Olga'").getResultList();
+            displayStudents(theStudents);
+
+            System.out.println("\n");
+            //query students: where email LIKE '%mail.ru'
+
+            theStudents=session.createQuery("FROM Student s WHERE s.email LIKE '%mail.ru'").getResultList();
+            displayStudents(theStudents);
+
 
             //commit transaction
             session.getTransaction().commit();
@@ -50,6 +63,12 @@ public class QueryStudentDemo {
         }
 
 
+    }
+
+    private static void displayStudents(List<Student> theStudents) {
+        for (Student tempStudent : theStudents) {
+            System.out.println("Student: " + tempStudent);
+        }
     }
 }
 
