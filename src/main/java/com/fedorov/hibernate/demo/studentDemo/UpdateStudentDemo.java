@@ -1,4 +1,4 @@
-package com.fedorov.hibernate.demo;
+package com.fedorov.hibernate.demo.studentDemo;
 
 import com.fedorov.hibernate.demo.entity.Student;
 import org.hibernate.Session;

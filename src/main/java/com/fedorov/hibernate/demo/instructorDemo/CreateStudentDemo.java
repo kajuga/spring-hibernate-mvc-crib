@@ -1,36 +1,47 @@
-package com.fedorov.hibernate.demo;
+package com.fedorov.hibernate.demo.instructorDemo;
 
 import com.fedorov.hibernate.demo.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteStudentDemo {
+
+public class CreateStudentDemo {
 
     public static void main(String[] args) {
 
         //create session factory
+
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
+        //create session
+
         Session session = factory.getCurrentSession();
 
         try {
-            //DELETE student id= 1 from database
-            int studentId =1;
-            session= factory.getCurrentSession();
+            //use the session object to save Java object
+
+            //create a student object
+            System.out.println("Creating new student object...");
+            Student tempStudent = new Student("Aleksandr", "Fedorov", "kajuga@mail.ru");
+
+            //start a transaction
             session.beginTransaction();
-            Student myStudent = session.get(Student.class, studentId);
-            session.delete(myStudent);
 
-            //another way: DELETE student id=2 from database ON FLY
-            session.createQuery("DELETE from Student where id=2").executeUpdate();
+            //save the student object
+            System.out.println("Saving the student...");
+            session.save(tempStudent);
 
-            //commit the transaction
+//            another way to insert my Stunent in table:
+
+
+            //commit transaction
             session.getTransaction().commit();
-            System.out.println("\n\nDone, student delete!");
+            System.out.println("Done!");
+
         }
         finally {
             factory.close();
@@ -39,19 +50,6 @@ public class DeleteStudentDemo {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
