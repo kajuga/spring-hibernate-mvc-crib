@@ -1,10 +1,18 @@
-package com.fedorov.hibernate.demo.entity;
+package com.fedorov.hibernate.demo.entities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "student")
-public class Student {
+@Table(name = "instructor", schema = "hb_01_one_to_one_uni")
+public class Instructor {
+
+    //annotate the class an entities and map to db tables
+    //define the fields
+    //annotate the fields with db column names
+    // *** setup relationship between instructor and  intructor detail
+    //create constructors
+    //generate getter/setter methods
+    //generate toString() method
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +28,16 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    //default constructor
-    public Student() {}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "instructor_detail_id")
+    private InstructorDetail instructorDetail;
 
-    public Student(String firstName, String lastName, String email) {
+
+
+    public Instructor() {
+    }
+
+    public Instructor(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -61,13 +75,22 @@ public class Student {
         this.email = email;
     }
 
+    public InstructorDetail getInstructorDetail() {
+        return instructorDetail;
+    }
+
+    public void setInstructorDetail(InstructorDetail instructorDetail) {
+        this.instructorDetail = instructorDetail;
+    }
+
     @Override
     public String toString() {
-        return "Student{" +
+        return "Instructor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", instructorDetail=" + instructorDetail +
                 '}';
     }
 }

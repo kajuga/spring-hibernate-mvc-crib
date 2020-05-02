@@ -1,59 +1,44 @@
 package com.fedorov.hibernate.demo.instructorDemo;
 
-import com.fedorov.hibernate.demo.entity.Student;
+import com.fedorov.hibernate.demo.entities.Instructor;
+import com.fedorov.hibernate.demo.entities.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
-public class CreateStudentDemo {
+public class DeleteInstructorDemo {
 
     public static void main(String[] args) {
 
         //create session factory
-
         SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Student.class)
+                .configure("hibernate_instructor.cfg.xml")
+                .addAnnotatedClass(Instructor.class)
+                .addAnnotatedClass(InstructorDetail.class)
                 .buildSessionFactory();
 
         //create session
-
         Session session = factory.getCurrentSession();
 
         try {
-            //use the session object to save Java object
-
-            //create a student object
-            System.out.println("Creating new student object...");
-            Student tempStudent = new Student("Aleksandr", "Fedorov", "kajuga@mail.ru");
-
             //start a transaction
             session.beginTransaction();
 
-            //save the student object
-            System.out.println("Saving the student...");
-            session.save(tempStudent);
+            //get instructor by primary key/id
+            int tempId = 1;
+            Instructor tempInstructor = session.get(Instructor.class, tempId);
 
-//            another way to insert my Stunent in table:
-
+            //delete the instructors
+            session.delete(tempInstructor);
 
             //commit transaction
             session.getTransaction().commit();
+
             System.out.println("Done!");
 
         }
         finally {
             factory.close();
         }
-
-
     }
 }
-
-
-
-
-
-
-

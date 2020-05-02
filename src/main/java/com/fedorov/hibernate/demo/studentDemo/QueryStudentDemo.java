@@ -1,6 +1,6 @@
 package com.fedorov.hibernate.demo.studentDemo;
 
-import com.fedorov.hibernate.demo.entity.Student;
+import com.fedorov.hibernate.demo.entities.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,7 +15,7 @@ public class QueryStudentDemo {
         //create session factory
 
         SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
+                .configure("hibernate_student.cfg.xml")
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 

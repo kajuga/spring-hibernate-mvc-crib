@@ -1,6 +1,6 @@
 package com.fedorov.hibernate.demo.studentDemo;
 
-import com.fedorov.hibernate.demo.entity.Student;
+import com.fedorov.hibernate.demo.entities.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,7 +13,7 @@ public class CreateStudentDemo {
         //create session factory
 
         SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
+                .configure("hibernate_student.cfg.xml")
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
@@ -26,7 +26,7 @@ public class CreateStudentDemo {
 
             //create a student object
             System.out.println("Creating new student object...");
-            Student tempStudent = new Student("Aleksandr", "Fedorov", "kajuga@mail.ru");
+            Student tempStudent = new Student("John", "Rambo", "msg2unk@gmail.com");
 
             //start a transaction
             session.beginTransaction();
