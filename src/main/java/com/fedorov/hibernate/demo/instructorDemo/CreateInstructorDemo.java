@@ -1,7 +1,7 @@
 package com.fedorov.hibernate.demo.instructorDemo;
 
-import com.fedorov.hibernate.demo.entities.Instructor;
-import com.fedorov.hibernate.demo.entities.InstructorDetail;
+import com.fedorov.hibernate.demo.entities.one_to_one_uni.Instructor;
+import com.fedorov.hibernate.demo.entities.one_to_one_uni.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

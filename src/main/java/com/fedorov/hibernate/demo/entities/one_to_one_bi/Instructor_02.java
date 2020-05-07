@@ -1,10 +1,10 @@
-package com.fedorov.hibernate.demo.entities;
+package com.fedorov.hibernate.demo.entities.one_to_one_bi;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "instructor", schema = "hb_01_one_to_one_uni")
-public class Instructor {
+@Table(name = "instructor", schema = "hb_01_one_to_one_bi")
+public class Instructor_02 {
 
     //annotate the class an entities and map to db tables
     //define the fields
@@ -30,14 +30,14 @@ public class Instructor {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
-    private InstructorDetail instructorDetail;
+    private InstructorDetail_02 instructorDetail;
 
 
 
-    public Instructor() {
+    public Instructor_02() {
     }
 
-    public Instructor(String firstName, String lastName, String email) {
+    public Instructor_02(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -75,17 +75,17 @@ public class Instructor {
         this.email = email;
     }
 
-    public InstructorDetail getInstructorDetail() {
+    public InstructorDetail_02 getInstructorDetail() {
         return instructorDetail;
     }
 
-    public void setInstructorDetail(InstructorDetail instructorDetail) {
+    public void setInstructorDetail(InstructorDetail_02 instructorDetail) {
         this.instructorDetail = instructorDetail;
     }
 
     @Override
     public String toString() {
-        return "Instructor{" +
+        return "Instructor_02{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
