@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class GetInstructorDetailDemo {
+public class DeleteCoursesDemo {
 
     public static void main(String[] args) {
 
@@ -13,6 +13,7 @@ public class GetInstructorDetailDemo {
                 .configure("hibernate_instructor.cfg.xml")
                 .addAnnotatedClass(Instructor_03.class)
                 .addAnnotatedClass(InstructorDetail_03.class)
+                .addAnnotatedClass(Course.class)
                 .buildSessionFactory();
 
         //create session
@@ -22,31 +23,34 @@ public class GetInstructorDetailDemo {
             //start a transaction
             session.beginTransaction();
 
+            //get a course
+            int tempId = 1;
+            Course deleteCourse = session.get(Course.class, tempId);
 
-            //get the instructor detail object
-            int theId = 2;
-            InstructorDetail_03 instructorDetail = session.get(InstructorDetail_03.class, theId);
+            //delete course
+            session.delete(deleteCourse);
 
-            //print the instructor detail
-            System.out.println("tempInstructionDetail: " + instructorDetail);
-
-            //print the assosiated instructor
-            System.out.println("the assotiated instructor: " + instructorDetail.getInstructor());
-
-
-            //commit transaction
+             //commit transaction
             session.getTransaction().commit();
-
 
             System.out.println("Done!");
         }
-        catch (Exception exc) {
-            exc.printStackTrace();
-        }
         finally {
-            //handle connection leak issue
+            //add clean up code
             session.close();
             factory.close();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

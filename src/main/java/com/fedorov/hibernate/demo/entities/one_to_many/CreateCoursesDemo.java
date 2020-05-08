@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class GetInstructorDetailDemo {
+public class CreateCoursesDemo {
 
     public static void main(String[] args) {
 
@@ -13,6 +13,7 @@ public class GetInstructorDetailDemo {
                 .configure("hibernate_instructor.cfg.xml")
                 .addAnnotatedClass(Instructor_03.class)
                 .addAnnotatedClass(InstructorDetail_03.class)
+                .addAnnotatedClass(Course.class)
                 .buildSessionFactory();
 
         //create session
@@ -21,32 +22,43 @@ public class GetInstructorDetailDemo {
         try {
             //start a transaction
             session.beginTransaction();
+            //get the instructor from db
+            int theId = 1;
+            Instructor_03 instructor = session.get(Instructor_03.class, theId);
 
+            //create some courses
+            Course tempCourse1 =  new Course("Air Guitar - The ultimate Guide ");
+            Course tempCourse2 =  new Course("Programming courses by Petr Arsentiev");
 
-            //get the instructor detail object
-            int theId = 2;
-            InstructorDetail_03 instructorDetail = session.get(InstructorDetail_03.class, theId);
+            //add courses to instructor
+            instructor.add(tempCourse1);
+            instructor.add(tempCourse2);
 
-            //print the instructor detail
-            System.out.println("tempInstructionDetail: " + instructorDetail);
-
-            //print the assosiated instructor
-            System.out.println("the assotiated instructor: " + instructorDetail.getInstructor());
-
+            //save the courses
+            session.save(tempCourse1);
+            session.save(tempCourse2);
 
             //commit transaction
             session.getTransaction().commit();
 
-
             System.out.println("Done!");
         }
-        catch (Exception exc) {
-            exc.printStackTrace();
-        }
         finally {
-            //handle connection leak issue
+            //add clean up code
             session.close();
             factory.close();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

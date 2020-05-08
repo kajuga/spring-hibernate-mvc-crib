@@ -1,10 +1,9 @@
 package com.fedorov.hibernate.demo.entities.one_to_many;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "course")
+@Table(name = "course", schema = "hb_03_one_to_many")
 public class Course {
 
     //1. define our fields
@@ -17,13 +16,20 @@ public class Course {
 
     //annotate  fields
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "title")
     private String title;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "instructor_id")
     private Instructor_03 instructor;
 
-
+    public Course() {
+    }
 
     public Course(String title) {
         this.title = title;

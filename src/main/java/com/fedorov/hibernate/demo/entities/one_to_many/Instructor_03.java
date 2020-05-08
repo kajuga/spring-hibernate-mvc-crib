@@ -1,15 +1,17 @@
 package com.fedorov.hibernate.demo.entities.one_to_many;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "instructor", schema = "hb_01_one_to_one_bi")
+@Table(name = "instructor", schema = "hb_03_one_to_many")
 public class Instructor_03 {
 
     //annotate the class an entities and map to db tables
     //define the fields
     //annotate the fields with db column names
-    // *** setup relationship between instructor and  intructor detail
+    // *** setup relationship between instructor and  intsructor detail
     //create constructors
     //generate getter/setter methods
     //generate toString() method
@@ -30,7 +32,10 @@ public class Instructor_03 {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
-    private InstructorDetail_02 instructorDetail;
+    private InstructorDetail_03 instructorDetail;
+
+    @OneToMany (mappedBy = "instructor", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Course> courses;
 
 
 
@@ -75,17 +80,34 @@ public class Instructor_03 {
         this.email = email;
     }
 
-    public InstructorDetail_02 getInstructorDetail() {
+    public InstructorDetail_03 getInstructorDetail() {
         return instructorDetail;
     }
 
-    public void setInstructorDetail(InstructorDetail_02 instructorDetail) {
+    public void setInstructorDetail(InstructorDetail_03 instructorDetail) {
         this.instructorDetail = instructorDetail;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    //add convenience method for bi-directional relationship
+    public void add (Course tempCourse) {
+        if(courses == null) {
+            courses = new ArrayList<Course>();
+        }
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
     }
 
     @Override
     public String toString() {
-        return "Instructor_02{" +
+        return "Instructor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -94,3 +116,21 @@ public class Instructor_03 {
                 '}';
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

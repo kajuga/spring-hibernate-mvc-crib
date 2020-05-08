@@ -11,8 +11,8 @@ public class DeleteInstructorDetailDemo {
         //create session factory
         SessionFactory factory = new Configuration()
                 .configure("hibernate_instructor.cfg.xml")
-                .addAnnotatedClass(Instructor_02.class)
-                .addAnnotatedClass(InstructorDetail_02.class)
+                .addAnnotatedClass(Instructor_03.class)
+                .addAnnotatedClass(InstructorDetail_03.class)
                 .buildSessionFactory();
 
         //create session
@@ -25,13 +25,13 @@ public class DeleteInstructorDetailDemo {
 
             //get the instructor detail object
             int theId = 3;
-            InstructorDetail_02 instructorDetail = session.get(InstructorDetail_02.class, theId);
+            InstructorDetail_03 instructorDetail = session.get(InstructorDetail_03.class, theId);
 
             //print the instructor detail
             System.out.println("tempInstructionDetail: " + instructorDetail);
 
             //print the assosiated instructor
-            System.out.println("the assotiated instructor: " + instructorDetail.getInstructor02());
+            System.out.println("the assotiated instructor: " + instructorDetail.getInstructor());
 
             //now let's delete this instructor detail
             System.out.println("Deleting instructionDetail: " + instructorDetail);
@@ -39,7 +39,7 @@ public class DeleteInstructorDetailDemo {
 
             //remove the assosiated object reference (to instructor field)
             //!!!
-            instructorDetail.getInstructor02().setInstructorDetail(null);
+            instructorDetail.getInstructor().setInstructorDetail(null);
 
 
 

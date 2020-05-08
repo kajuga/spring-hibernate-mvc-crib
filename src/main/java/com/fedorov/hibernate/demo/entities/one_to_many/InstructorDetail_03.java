@@ -3,7 +3,7 @@ package com.fedorov.hibernate.demo.entities.one_to_many;
 import javax.persistence.*;
 
 @Entity
-@Table(name="instructor_detail", schema = "hb_01_one_to_one_bi")
+@Table(name="instructor_detail", schema = "hb_03_one_to_many")
 public class InstructorDetail_03 {
 
     //annotate the class an entities and map to db tables
