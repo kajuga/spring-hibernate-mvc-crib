@@ -11,9 +11,9 @@ CREATE TABLE hb_02_one_to_one_bi.instructor_detail (
             hobby varchar(45) DEFAULT NULL
                                                    );
 
-DROP TABLE IF EXISTS hb_02_one_to_one_bi.instructor02;
+DROP TABLE IF EXISTS hb_02_one_to_one_bi.instructor;
 
-CREATE TABLE hb_02_one_to_one_bi.instructor02 (
+CREATE TABLE hb_02_one_to_one_bi.instructor (
             id SERIAL NOT NULL,
             first_name varchar(45) DEFAULT NULL,
             last_name varchar(45) DEFAULT NULL,
