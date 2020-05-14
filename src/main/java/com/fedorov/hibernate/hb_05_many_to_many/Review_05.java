@@ -14,6 +14,7 @@ public class Review_05 {
     @Column(name = "comment")
     private String comment;
 
+
     public Review_05() {
     }
 
@@ -36,6 +37,7 @@ public class Review_05 {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
 
     @Override
     public String toString() {

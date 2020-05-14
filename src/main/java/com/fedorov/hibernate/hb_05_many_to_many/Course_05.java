@@ -30,7 +30,7 @@ public class Course_05 {
     @JoinColumn(name = "instructor_id")
     private Instructor_05 instructor;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Review_05> rewiews;
 
