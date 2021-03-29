@@ -1,4 +1,4 @@
-package com.fedorov.hibernate.studentDemo;
+package com.fedorov.hibernate.studentCRUD;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

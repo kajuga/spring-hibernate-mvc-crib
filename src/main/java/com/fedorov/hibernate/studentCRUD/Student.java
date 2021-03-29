@@ -1,4 +1,4 @@
-package com.fedorov.hibernate.studentDemo;
+package com.fedorov.hibernate.studentCRUD;
 
 import javax.persistence.*;
 
